@@ -64,7 +64,6 @@ namespace ES::web {
 //    const std::string port_delimiter = ":";
 //    const std::string query_delimiter = "?";
 //    const std::string fragment_delimiter = "#";
-//
 //    const std::string authority_separator = ".";
 //    const std::string path_separator = "/";
 
@@ -78,7 +77,6 @@ namespace ES::web {
         bool page_defined = false;
 
     };
-
 
     void test_url(const ParsedUrl &url);
 
