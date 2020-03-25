@@ -4,18 +4,24 @@
 #define _WIN32_WINNT 0x0A00
 #endif
 
-#include <algorithm>
 #include <iostream>
-#include <regex>
 #include <string>
+#include <fstream>
 
 #include <vector>
 
+#include <filesystem>
 
 #include "ES/web/get_html.hpp"
 #include "ES/web/tag_functions.hpp"
 #include "ES/web/ParsedUrl.hpp"
 
+
+void write_file(const std::string &content, const std::string &filename)
+{
+    std::ofstream outfile(filename);
+    outfile << content;
+}
 
 
 
@@ -25,6 +31,12 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     std::string base_site = std::string(argv[1]);
+    std::string base_dir = "Site";
+    if (argc < 3) {
+        base_dir = argv[2];
+    }
+    std::cout << "base_dir:  " << base_dir << std::endl;
+
     auto result = ES::web::get_html(base_site, "/", "80");
 
     std::cout << "************************************************\n";
@@ -56,5 +68,10 @@ int main(int argc, char *argv[]) {
         std::cout << "*********************************************************\n";
     }
 
+    std::filesystem::create_directories("../Site/path/here");
+    std::ofstream out("../Site/path/here/thing.txt");
+//    out << std::string("This is some stuff\nmore stuff");
+    out << result;
+    out.close();
 }
 
