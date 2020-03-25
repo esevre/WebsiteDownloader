@@ -30,6 +30,7 @@ namespace ES::web {
     class ParsedUrl {
     public:
         explicit ParsedUrl(const std::string &url);
+        ParsedUrl(const ParsedUrl &) = default;
 
         // Getters and Setters
         std::string whole_url() const;
@@ -67,30 +68,12 @@ namespace ES::web {
 //    const std::string authority_separator = ".";
 //    const std::string path_separator = "/";
 
-        std::string::iterator scheme_begin;
-        std::string::iterator scheme_end;
-        std::string::iterator userinfo_begin;
-        std::string::iterator userinfo_end;
-        std::string::iterator host_begin;
-        std::string::iterator host_end;
-        std::string::iterator port_begin;
-        std::string::iterator port_end;
-        std::string::iterator path_begin;
-        std::string::iterator path_end;
-        std::string::iterator page_begin;
-        std::string::iterator page_end;
-        std::string::iterator query_begin;
-        std::string::iterator query_end;
-        std::string::iterator fragment_begin;
-        std::string::iterator fragment_end;
-
         std::string m_whole_url;
         std::string m_scheme;
-        std::string m_subdirectory;
         std::string m_page;
         std::string m_query;
         std::string m_fragment;
-        std::vector<std::string> authority_vector; // to use later
+        std::vector<std::string> authority_vector;
         std::vector<std::string> directory_vector;
         bool page_defined = false;
 
