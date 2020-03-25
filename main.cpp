@@ -52,6 +52,22 @@ void write_html(const ES::web::ParsedUrl &url,
     }
 }
 
+struct Crawler {
+public:
+    Crawler(const std::string &url_string) : base_url(url_string)
+    {
+
+    }
+    bool domain_check(const ES::web::ParsedUrl &url) const
+    {
+        return url.top_domain() == top_domain && url.second_level_domain() == second_domain;
+    }
+private:
+    ES::web::ParsedUrl base_url;
+    std::string top_domain;
+    std::string second_domain;
+};
+
 
 
 int main(int argc, char *argv[]) {
